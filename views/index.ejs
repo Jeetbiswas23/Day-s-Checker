@@ -6,7 +6,7 @@
     <title>Day's Checker</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -93,6 +93,40 @@
             background-color: #0056b3;
             transform: scale(1.05);
         }
+        .notes h3, .events h3, .progress h3 {
+            margin-bottom: 5px;
+        }
+        .notes ul, .events ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .notes li, .events li {
+            background-color: #f9f9f9;
+            margin-bottom: 5px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .notes form, .events form, .progress form {
+            display: flex;
+            flex-direction: column;
+        }
+        .notes input[type="text"], .events input[type="text"], .progress input[type="number"] {
+            padding: 8px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .notes button, .events button, .progress button {
+            padding: 8px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .notes button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -117,7 +151,11 @@
                         <button type="submit">Add</button>
                     </form>
                 </div>
+<<<<<<< HEAD
                 <div class="section events">
+=======
+                <div class="events">
+>>>>>>> 3a166b91462dbe9179720a46faa4eceb1db09c68
                     <h3>Events:</h3>
                     <ul>
                         <% dayInfo.events.forEach(event => { %>
@@ -130,7 +168,11 @@
                         <button type="submit">Add</button>
                     </form>
                 </div>
+<<<<<<< HEAD
                 <div class="section progress">
+=======
+                <div class="progress">
+>>>>>>> 3a166b91462dbe9179720a46faa4eceb1db09c68
                     <h3>Progress:</h3>
                     <p>Progress: <%= dayInfo.progress %>%</p>
                     <form action="/update-progress" method="POST">
