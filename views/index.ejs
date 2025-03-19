@@ -30,6 +30,10 @@
             background-color: #f0f8ff;
             font-weight: bold;
         }
+        .notes {
+            margin-top: 10px;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -41,8 +45,49 @@
                 <h2><%= dayInfo.day %></h2>
                 <p><%= dayInfo.message %></p>
                 <p><%= dayInfo.advice %></p>
+                <div class="notes">
+                    <h3>Notes:</h3>
+                    <ul>
+                        <% dayInfo.notes.forEach(note => { %>
+                            <li><%= note %></li>
+                        <% }) %>
+                    </ul>
+                    <form action="/add-note" method="POST">
+                        <input type="hidden" name="dayIndex" value="<%= index %>">
+                        <input type="text" name="note" placeholder="Add a note" required>
+                        <button type="submit">Add</button>
+                    </form>
+                </div>
             </div>
         <% }) %>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const notes = JSON.parse(localStorage.getItem('notes')) || {};
+            document.querySelectorAll('.day').forEach((dayElement, index) => {
+                const dayNotes = notes[index] || [];
+                const notesList = dayElement.querySelector('ul');
+                dayNotes.forEach(note => {
+                    const li = document.createElement('li');
+                    li.textContent = note;
+                    notesList.appendChild(li);
+                });
+                dayElement.querySelector('form').addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const noteInput = event.target.querySelector('input[name="note"]');
+                    const note = noteInput.value;
+                    if (!notes[index]) {
+                        notes[index] = [];
+                    }
+                    notes[index].push(note);
+                    localStorage.setItem('notes', JSON.stringify(notes));
+                    const li = document.createElement('li');
+                    li.textContent = note;
+                    notesList.appendChild(li);
+                    noteInput.value = '';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
