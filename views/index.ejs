@@ -151,36 +151,6 @@
                         <button type="submit">Add</button>
                     </form>
                 </div>
-<<<<<<< HEAD
-                <div class="section events">
-=======
-                <div class="events">
->>>>>>> 3a166b91462dbe9179720a46faa4eceb1db09c68
-                    <h3>Events:</h3>
-                    <ul>
-                        <% dayInfo.events.forEach(event => { %>
-                            <li><%= event %></li>
-                        <% }) %>
-                    </ul>
-                    <form action="/add-event" method="POST">
-                        <input type="hidden" name="dayIndex" value="<%= index %>">
-                        <input type="text" name="event" placeholder="Add an event" required>
-                        <button type="submit">Add</button>
-                    </form>
-                </div>
-<<<<<<< HEAD
-                <div class="section progress">
-=======
-                <div class="progress">
->>>>>>> 3a166b91462dbe9179720a46faa4eceb1db09c68
-                    <h3>Progress:</h3>
-                    <p>Progress: <%= dayInfo.progress %>%</p>
-                    <form action="/update-progress" method="POST">
-                        <input type="hidden" name="dayIndex" value="<%= index %>">
-                        <input type="number" name="progress" min="0" max="100" value="<%= dayInfo.progress %>" required>
-                        <button type="submit">Update</button>
-                    </form>
-                </div>
             </div>
         <% }) %>
     </div>
