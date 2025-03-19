@@ -40,34 +40,34 @@
             background-color: #e0f7fa;
             font-weight: bold;
         }
-        .notes {
+        .notes, .events, .progress {
             margin-top: 10px;
             text-align: left;
         }
-        .notes h3 {
+        .notes h3, .events h3, .progress h3 {
             margin-bottom: 5px;
         }
-        .notes ul {
+        .notes ul, .events ul {
             list-style-type: none;
             padding: 0;
         }
-        .notes li {
+        .notes li, .events li {
             background-color: #f9f9f9;
             margin-bottom: 5px;
             padding: 5px;
             border-radius: 5px;
         }
-        .notes form {
+        .notes form, .events form, .progress form {
             display: flex;
             flex-direction: column;
         }
-        .notes input[type="text"] {
+        .notes input[type="text"], .events input[type="text"], .progress input[type="number"] {
             padding: 8px;
             margin-bottom: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        .notes button {
+        .notes button, .events button, .progress button {
             padding: 8px;
             background-color: #007bff;
             color: #fff;
@@ -100,6 +100,28 @@
                         <input type="hidden" name="dayIndex" value="<%= index %>">
                         <input type="text" name="note" placeholder="Add a note" required>
                         <button type="submit">Add</button>
+                    </form>
+                </div>
+                <div class="events">
+                    <h3>Events:</h3>
+                    <ul>
+                        <% dayInfo.events.forEach(event => { %>
+                            <li><%= event %></li>
+                        <% }) %>
+                    </ul>
+                    <form action="/add-event" method="POST">
+                        <input type="hidden" name="dayIndex" value="<%= index %>">
+                        <input type="text" name="event" placeholder="Add an event" required>
+                        <button type="submit">Add</button>
+                    </form>
+                </div>
+                <div class="progress">
+                    <h3>Progress:</h3>
+                    <p>Progress: <%= dayInfo.progress %>%</p>
+                    <form action="/update-progress" method="POST">
+                        <input type="hidden" name="dayIndex" value="<%= index %>">
+                        <input type="number" name="progress" min="0" max="100" value="<%= dayInfo.progress %>" required>
+                        <button type="submit">Update</button>
                     </form>
                 </div>
             </div>
