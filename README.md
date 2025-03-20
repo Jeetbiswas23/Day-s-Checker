@@ -33,4 +33,4 @@ node index.js
 - Remember to add proper validation for all form inputs
 - Weekly data is stored in memory by default; consider adding database integration
 - Add authentication system for multi-user support
-- Keep session secrets in environment variables for production
+- Keep session secrets in environment variables for productionc
